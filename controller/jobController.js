@@ -1,6 +1,16 @@
 import Job from "../model/jobModel.js";
 import asyncHandler from "express-async-handler";
 
+const getHelloWorld = asyncHandler(async (req, res) => {
+  try {
+    // Respond with "Hello, World!"
+    res.status(200).send({ message: "Hello, World by job!" });
+  } catch (error) {
+    console.error("Error in getHelloWorld:", error.message); // Log error
+    res.status(500).send({ message: "Server error.", error: error.message });
+  }
+});
+
 // get all jobs
 const getAllJobs = asyncHandler(async (req, res) => {
   try {
@@ -59,4 +69,4 @@ const showAllJobsByUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { getAllJobs, createJobs, showAllJobsByUser };
+export { getAllJobs, createJobs, showAllJobsByUser, getHelloWorld };
